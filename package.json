@@ -1,0 +1,10 @@
+{
+  "name": "dot-notes",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Локальное приложение для заметок с поиском и тегами",
+  "scripts": {
+    "start": "python3 -m http.server 8090 --bind 127.0.0.1",
+    "check": "node --check src/scripts/app.js && node --check src/scripts/domain/notes.js && node --check src/scripts/services/storage.js"
+  }
+}

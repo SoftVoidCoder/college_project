@@ -1,0 +1,27 @@
+@media (max-width: 920px) {
+  .app-shell { grid-template-columns: 1fr; }
+  .sidebar { position: static; height: auto; padding: 18px 22px; }
+  .brand { margin: 0; }
+  .sidebar-nav { display: none; }
+  .sidebar-section { margin-top: 20px; }
+  .sidebar-tip { display: none; }
+  .workspace { padding-top: 28px; }
+}
+@media (max-width: 680px) {
+  .workspace { padding: 24px 15px 42px; }
+  .topbar { align-items: flex-end; margin-bottom: 22px; }
+  .topbar h1 { font-size: 32px; }
+  .topbar .compact { font-size: 0; }
+  .topbar .compact::after { content: "+"; font-size: 21px; }
+  .overview { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .metric-card { min-height: 96px; padding: 17px; }
+  .metric-card:first-child { grid-column: 1 / -1; }
+  .metric-card strong { margin-top: 8px; font-size: 26px; }
+  .panel { padding: 20px 16px; border-radius: 20px; }
+  .panel-heading { align-items: flex-start; }
+  .toolbar, .notes-grid { grid-template-columns: 1fr; }
+  .notes-grid { gap: 11px; }
+  .note-card { min-height: 210px; }
+  .note-menu { opacity: 1; }
+  .danger-button { padding-right: 0; }
+}

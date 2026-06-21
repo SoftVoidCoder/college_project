@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Локальное приложение для заметок, поиска и работы с тегами.">
+    <title>Точка — заметки без лишнего</title>
+    <link rel="stylesheet" href="src/styles/main.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <a class="brand" href="#notes" aria-label="Перейти к заметкам">
+          <span class="brand-mark">Т</span>
+          <span><strong>Точка</strong><small>Личные заметки</small></span>
+        </a>
+
+        <nav class="sidebar-nav" aria-label="Навигация">
+          <a class="nav-item active" href="#notes"><span aria-hidden="true">●</span> Все заметки</a>
+          <a class="nav-item" href="#editor"><span aria-hidden="true">+</span> Новая заметка</a>
+        </nav>
+
+        <section class="sidebar-section" aria-labelledby="tagsHeading">
+          <div class="sidebar-section-head">
+            <h2 id="tagsHeading">Теги</h2>
+            <button class="text-button hidden" id="resetTagFilterBtn" type="button">Сбросить</button>
+          </div>
+          <div id="tagsCloud" class="tags-cloud"></div>
+        </section>
+
+        <div class="sidebar-tip">
+          <span aria-hidden="true">✦</span>
+          <p>Добавляйте <code>#теги</code> прямо в текст — они определятся автоматически.</p>
+        </div>
+      </aside>
+
+      <main class="workspace">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Ваше пространство</p>
+            <h1>Заметки</h1>
+          </div>
+          <a class="primary-button compact" href="#editor">+ Новая заметка</a>
+        </header>
+
+        <section class="overview" aria-label="Сводка">
+          <article class="metric-card metric-accent">
+            <span>Всего заметок</span><strong id="notesCount">0</strong>
+          </article>
+          <article class="metric-card">
+            <span>Тегов</span><strong id="tagsCount">0</strong>
+          </article>
+          <article class="metric-card">
+            <span>Сейчас показано</span><strong id="visibleCount">0</strong>
+          </article>
+        </section>
+
+        <section class="panel notes-panel" id="notes">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Коллекция</p>
+              <h2>Все заметки</h2>
+            </div>
+            <button class="danger-button" id="clearAllBtn" type="button">Очистить список</button>
+          </div>
+
+          <div class="toolbar">
+            <label class="field search-field">
+              <span class="sr-only">Поиск</span>
+              <span class="search-icon" aria-hidden="true">⌕</span>
+              <input id="searchInput" type="search" placeholder="Найти заметку или тег…">
+            </label>
+            <label class="field sort-field">
+              <span class="sr-only">Сортировка</span>
+              <select id="sortSelect">
+                <option value="newest">Сначала новые</option>
+                <option value="oldest">Сначала старые</option>
+                <option value="title">По алфавиту</option>
+              </select>
+            </label>
+          </div>
+
+          <div id="activeFilter" class="active-filter hidden"></div>
+          <div id="messageBox" class="message hidden" role="status" aria-live="polite"></div>
+          <div id="notesList" class="notes-grid"></div>
+        </section>
+
+        <section class="panel editor-panel" id="editor">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Редактор</p>
+              <h2 id="formTitle">Новая заметка</h2>
+            </div>
+            <button class="text-button hidden" id="cancelEditBtn" type="button">Отменить</button>
+          </div>
+
+          <form id="noteForm" class="note-form">
+            <label class="field">
+              <span>Заголовок</span>
+              <input id="titleInput" name="title" type="text" maxlength="90" placeholder="О чём эта заметка?" required>
+            </label>
+            <label class="field">
+              <span>Текст</span>
+              <textarea id="contentInput" name="content" rows="7" maxlength="1200" placeholder="Запишите мысль, задачу или идею…" required></textarea>
+            </label>
+            <label class="field">
+              <span>Теги <small>необязательно</small></span>
+              <input id="tagsInput" name="tags" type="text" maxlength="180" placeholder="#работа #идея #важное">
+            </label>
+            <div class="form-actions">
+              <button class="primary-button" type="submit" id="submitBtn">Сохранить заметку</button>
+              <button class="secondary-button" type="reset">Очистить</button>
+            </div>
+          </form>
+        </section>
+      </main>
+    </div>
+
+    <template id="noteTemplate">
+      <article class="note-card">
+        <div class="note-card-head">
+          <span class="note-dot" aria-hidden="true"></span>
+          <div class="note-menu">
+            <button class="icon-button edit-btn" type="button" aria-label="Изменить заметку">✎</button>
+            <button class="icon-button delete-btn" type="button" aria-label="Удалить заметку">×</button>
+          </div>
+        </div>
+        <h3 class="note-title"></h3>
+        <p class="note-content"></p>
+        <div class="note-tags"></div>
+        <p class="note-date"></p>
+      </article>
+    </template>
+
+    <script type="module" src="src/scripts/app.js"></script>
+  </body>
+</html>
